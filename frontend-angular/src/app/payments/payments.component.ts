@@ -4,6 +4,7 @@ import {DataSource} from "@angular/cdk/collections";
 import {MatTableDataSource} from "@angular/material/table";
 import {MatPaginator} from "@angular/material/paginator";
 import {MatSort} from "@angular/material/sort";
+import {StudentsService} from "../services/students.service";
 
 @Component({
   selector: 'app-payments',
@@ -21,11 +22,12 @@ export class PaymentsComponent implements OnInit {
   @ViewChild(MatPaginator ) paginator!: MatPaginator
 
   @ViewChild(MatSort) matSort!:MatSort
-  constructor(private http:HttpClient) {
+  constructor(private http:HttpClient,
+              private studentsService: StudentsService) {
   }
 
   ngOnInit(): void {
-    this.http.get('http://localhost:8021/payments')
+    this.studentsService.getAllPayments()
       .subscribe({
         next : data=>{
          this.payments=data

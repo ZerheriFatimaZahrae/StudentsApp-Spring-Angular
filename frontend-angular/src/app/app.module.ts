@@ -29,6 +29,8 @@ import {HttpClientModule} from "@angular/common/http";
 import {MatTableModule} from "@angular/material/table";
 import {MatPaginator, MatPaginatorModule} from "@angular/material/paginator";
 import {MatSort, MatSortModule} from "@angular/material/sort";
+import { StudentDetailsComponent } from './student-details/student-details.component';
+import { NewPaymentComponent } from './new-payment/new-payment.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +43,9 @@ import {MatSort, MatSortModule} from "@angular/material/sort";
     LoginComponent,
     StudentsComponent,
     PaymentsComponent,
-    DashbordComponent
+    DashbordComponent,
+    StudentDetailsComponent,
+    NewPaymentComponent
   ],
   imports: [
     BrowserModule,

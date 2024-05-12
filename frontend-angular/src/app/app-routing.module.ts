@@ -11,6 +11,8 @@ import {StudentsComponent} from "./students/students.component";
 import {PaymentsComponent} from "./payments/payments.component";
 import {AuthGuard} from "./guards/auth.guard";
 import {AuthorizationGuard} from "./guards/authorization.guard";
+import {StudentDetailsComponent} from "./student-details/student-details.component";
+import {NewPaymentComponent} from "./new-payment/new-payment.component";
 
 const routes: Routes = [
   {path:"admin", component:AdminTemplateComponent,
@@ -34,6 +36,8 @@ const routes: Routes = [
       {path:"students",component:StudentsComponent},
       {path:"payments",component:PaymentsComponent},
       {path:"home",component:HomeComponent},
+      {path:"student-details/:code",component:StudentDetailsComponent},
+      {path:"newPayment",component:NewPaymentComponent},
     ]
   },
 
