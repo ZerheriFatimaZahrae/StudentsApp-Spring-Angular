@@ -46,11 +46,19 @@
         <mat-label>File</mat-label>
         <!--faire le click sur input de son id f_input--->
         <button type="button" mat-icon-button matPrefix (click)="f_input.click()">
-          <mat-icon>attach-file</mat-icon>
+
+          <mat-icon>attach_file</mat-icon>
         </button>
         <input matInput readonly   formControlName="fileName">
-        <input type="file" hidden #f_input (change)="selectFile($event)" accept="application/pdf">
+        <input type="file" hidden #f_input (change)="selectFile($event)"
+               accept="application/pdf">
       </mat-form-field>
+
+      <mat-card-actions>
+        <button mat-raised-button color="primary" (click)="savePayment()">
+          Save Payment
+        </button>
+      </mat-card-actions>
 
 
 

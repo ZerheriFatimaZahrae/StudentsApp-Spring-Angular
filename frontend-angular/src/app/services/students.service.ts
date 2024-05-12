@@ -22,4 +22,7 @@ export class StudentsService {
     return this.httpClient.get<Array<Payment>>(`${environment.backendHost}/students/${code}/payments`);
   }
 
+  savePaymentStudent(formData: any) {
+    return this.httpClient.post<Payment>(`${environment.backendHost}/payments`,formData);
+  }
 }
