@@ -37,7 +37,7 @@ const routes: Routes = [
       {path:"payments",component:PaymentsComponent},
       {path:"home",component:HomeComponent},
       {path:"student-details/:code",component:StudentDetailsComponent},
-      {path:"newPayment",component:NewPaymentComponent},
+      {path:"newPayment/:code",component:NewPaymentComponent},
     ]
   },
 

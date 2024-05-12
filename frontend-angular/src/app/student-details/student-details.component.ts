@@ -6,6 +6,7 @@ import {Payment} from "../model/students.model";
 import {DataSource} from "@angular/cdk/collections";
 import {MatPaginator} from "@angular/material/paginator";
 import {MatSort} from "@angular/material/sort";
+import {onErrorResumeNextWith} from "rxjs";
 
 @Component({
   selector: 'app-student-details',
@@ -25,7 +26,8 @@ export class StudentDetailsComponent implements OnInit {
 
   @ViewChild(MatSort) matSort!:MatSort
   constructor(private route:ActivatedRoute,
-              private studentService:StudentsService) {
+              private studentService:StudentsService,
+              private router:Router){
   }
   ngOnInit(): void {
     //acceder au par code qd on deja specifier ds la route
@@ -47,4 +49,9 @@ export class StudentDetailsComponent implements OnInit {
   }
 
 
+  protected readonly onErrorResumeNextWith = onErrorResumeNextWith;
+
+  newPayment() {
+    this.router.navigateByUrl(`/admin/newPayment/${this.studentCode}`)
+  }
 }
