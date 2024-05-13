@@ -19,7 +19,7 @@ export class StudentDetailsComponent implements OnInit {
   paymentDataSource!:MatTableDataSource<Payment>;
   public displayedColumns=['id', 'date',
     'amount', 'type','status',
-    'firstName',
+    'firstName','details'
   ]
   //chercher ds html un obj de type MatPaginator et affecter au var paginator
   @ViewChild(MatPaginator ) paginator!: MatPaginator
@@ -53,5 +53,9 @@ export class StudentDetailsComponent implements OnInit {
 
   newPayment() {
     this.router.navigateByUrl(`/admin/newPayment/${this.studentCode}`)
+  }
+  paymentDetails(payment : Payment) {
+    this.router.navigateByUrl(`/admin/paymentDetails/${payment.id}`)
+
   }
 }

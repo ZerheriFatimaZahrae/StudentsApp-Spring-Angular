@@ -5,6 +5,7 @@ import {MatTableDataSource} from "@angular/material/table";
 import {MatPaginator} from "@angular/material/paginator";
 import {MatSort} from "@angular/material/sort";
 import {StudentsService} from "../services/students.service";
+import {Payment} from "../model/students.model";
 
 @Component({
   selector: 'app-payments',
@@ -41,5 +42,6 @@ export class PaymentsComponent implements OnInit {
         }
       });
   }
+
 
 }

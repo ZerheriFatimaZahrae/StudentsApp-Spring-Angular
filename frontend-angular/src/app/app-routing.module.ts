@@ -13,6 +13,7 @@ import {AuthGuard} from "./guards/auth.guard";
 import {AuthorizationGuard} from "./guards/authorization.guard";
 import {StudentDetailsComponent} from "./student-details/student-details.component";
 import {NewPaymentComponent} from "./new-payment/new-payment.component";
+import {PaymentDetailComponent} from "./payment-detail/payment-detail.component";
 
 const routes: Routes = [
   {path:"admin", component:AdminTemplateComponent,
@@ -37,7 +38,8 @@ const routes: Routes = [
       {path:"payments",component:PaymentsComponent},
       {path:"home",component:HomeComponent},
       {path:"student-details/:code",component:StudentDetailsComponent},
-      {path:"newPayment/:code",component:NewPaymentComponent},
+      {path:"newPayment/:studentCode",component:NewPaymentComponent},
+      {path:"paymentDetails/:id",component:PaymentDetailComponent},
     ]
   },
 

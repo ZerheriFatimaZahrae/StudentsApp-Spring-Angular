@@ -12,7 +12,8 @@ import {StudentsService} from "../services/students.service";
 export class NewPaymentComponent implements OnInit {
   studentCode!:string;
   public newPaymentForm!:FormGroup;
-  public paymentTypes:PaymentType[]=[];
+  public paymentTypes : string[] = [];
+  showProgress:boolean=false
   pdfFileUrl!:string;
   constructor(private route: ActivatedRoute,
               private fb:FormBuilder,
@@ -20,11 +21,14 @@ export class NewPaymentComponent implements OnInit {
 
   }
     ngOnInit(): void {
-    for (let elt in PaymentType){
+      for (let elt in PaymentType){
+        let value = PaymentType[elt];
+        if (typeof value === 'string'){
+          this.paymentTypes.push(value);
+        }
+      }
 
-      //this.paymentTypes.push(PaymentType[elt]);
-    }
-      this.studentCode=this.route.snapshot.params['code'];
+      this.studentCode=this.route.snapshot.params['studentCode'];
       this.newPaymentForm=this.fb.group({
         date:this.fb.control(''),
         amount:this.fb.control('0.0'),
@@ -36,6 +40,8 @@ export class NewPaymentComponent implements OnInit {
     }
 
   savePayment() {
+    this.showProgress=true;
+
     let date= new Date(this.newPaymentForm.value.date);
     let formattedDate = date.getDate()+"/"+(date.getMonth()+1)+'/'+date.getFullYear();
 
@@ -45,8 +51,9 @@ export class NewPaymentComponent implements OnInit {
     formData.set('type', this. newPaymentForm.value.type);
     formData.set('studentCode', this.newPaymentForm.value.studentCode);
     formData.set('file', this.newPaymentForm.value.fileSource);
-    this.studentService.savePaymentStudent(formData).subscribe({
+    this.studentService.savePayment(formData).subscribe({
       next: value => {
+        this.showProgress=false
         alert('Payment Saved Successfully !')
       },
       error: err => {
@@ -66,6 +73,10 @@ export class NewPaymentComponent implements OnInit {
          this.pdfFileUrl=window.URL.createObjectURL(file)
        }
   }
+  afterLoadComplete($event: any) {
+    console.log(event);
+  }
+
 
 
 }

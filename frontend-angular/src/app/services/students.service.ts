@@ -22,7 +22,14 @@ export class StudentsService {
     return this.httpClient.get<Array<Payment>>(`${environment.backendHost}/students/${code}/payments`);
   }
 
-  savePaymentStudent(formData: any) {
+
+  public savePayment(formData : any) : Observable<Payment>{
     return this.httpClient.post<Payment>(`${environment.backendHost}/payments`,formData);
   }
+
+    getPaymentDetails(id: number) {
+      return this.httpClient.get(`${environment.backendHost}/payments/${id}/file`,
+          {responseType:'blob'});
+
+    }
 }

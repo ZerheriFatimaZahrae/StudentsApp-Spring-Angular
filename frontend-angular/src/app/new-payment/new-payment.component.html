@@ -1,5 +1,6 @@
 <div class="container">
   <mat-card  class="login-form" [formGroup]="newPaymentForm">
+
     <mat-card-header>
       <mat-card-title>
         New Payment
@@ -31,16 +32,13 @@
       </mat-form-field>
 
       <mat-form-field appearance="outline">
-        <mat-label>Type</mat-label>
         <mat-select formControlName="type">
-          <mat-option value="CHECK">CHECK</mat-option>
-          <mat-option value="CASH">CASH</mat-option>
-          <mat-option value="TRANSFER">TRANSFER</mat-option>
-          <mat-option value="DEPOSIT">DEPOSIT</mat-option>
-
+          <mat-option *ngFor="let type of paymentTypes" [value]="type">
+            {{type}}
+          </mat-option>
         </mat-select>
-
       </mat-form-field>
+
 
       <mat-form-field appearance="outline">
         <mat-label>File</mat-label>
@@ -58,6 +56,7 @@
         <button mat-raised-button color="primary" (click)="savePayment()">
           Save Payment
         </button>
+        <mat-spinner *ngIf="showProgress"></mat-spinner>
       </mat-card-actions>
 
 
@@ -65,5 +64,34 @@
 
     </mat-card-content>
 
+  </mat-card>
+
+  <mat-card>
+    <mat-card-header>
+        <mat-card-title>
+             Payment File
+        </mat-card-title>
+    </mat-card-header>
+    <mat-divider></mat-divider>
+    <mat-card-content>
+
+
+        <pdf-viewer
+          [src]="pdfFileUrl"
+          [original-size]="true"
+          [render-text]="true"
+          [rotation]="0"
+          [show-all]="true"
+          [fit-to-page]="true"
+          [zoom]="1"
+          [zoom-scale]="'page-width'"
+          [external-link-target]="'blank'"
+          [autoresize]="true"
+          [show-borders]="false"
+          class="pdf-viewer"
+        (after-load-complete)="afterLoadComplete($event)"
+        ></pdf-viewer>
+
+    </mat-card-content>
   </mat-card>
 </div>
